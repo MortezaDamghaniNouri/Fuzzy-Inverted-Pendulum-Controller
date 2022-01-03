@@ -219,6 +219,19 @@ class FuzzyController:
         return output_dictionary
 
 
+    # This function receives a list of integers and finds the amount of maximum element
+    def max_finder(self, input_list):
+        if len(input_list) == 0:
+            return 0
+        max = input_list[0]
+        i = 1
+        while i < len(input_list):
+            if input_list[i] > max:
+                max = input_list[i]
+            i += 1
+        return max
+
+
     # This function infers according to the amounts of pa and pv
     def inference_function(self, input_pa_dict, input_pv_dict):
         stop_list = []
@@ -226,6 +239,8 @@ class FuzzyController:
         left_slow_list = []
         right_fast_list = []
         right_slow_list = []
+
+        # Rules:
         stop_list.append(max(min(input_pa_dict["up"], input_pv_dict["stop"]), min(input_pa_dict["up_right"], input_pv_dict["ccw_slow"]), min(input_pa_dict["up_left"], input_pv_dict["cw_slow"])))
         right_fast_list.append(min(input_pa_dict["up_more_right"], input_pv_dict["ccw_slow"]))
         right_fast_list.append(min(input_pa_dict["up_more_right"], input_pv_dict["cw_slow"]))
@@ -269,12 +284,13 @@ class FuzzyController:
         right_slow_list.append(min(input_pa_dict["up"], input_pv_dict["cw_slow"]))
         right_fast_list.append(min(input_pa_dict["up"], input_pv_dict["cw_fast"]))
         stop_list.append(min(input_pa_dict["up"], input_pv_dict["stop"]))
-
-
-
-
-
-
+        output_dictionary = {}
+        output_dictionary["stop"] = self.max_finder(stop_list)
+        output_dictionary["left_fast"] = self.max_finder(left_fast_list)
+        output_dictionary["left_slow"] = self.max_finder(left_slow_list)
+        output_dictionary["right_fast"] = self.max_finder(right_fast_list)
+        output_dictionary["right_slow"] = self.max_finder(right_slow_list)
+        return output_dictionary
 
 
     def decide(self, world):
