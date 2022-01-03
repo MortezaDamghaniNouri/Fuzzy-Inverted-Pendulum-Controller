@@ -406,7 +406,6 @@ class FuzzyController:
     # This function calculates the final amount of force by integration
     def integration_calculator(self, input_force_dict, num_of_points):
         points_list = self.points_generator(num_of_points)
-        # print(points_list)
         results_list = []
         i = 0
         while i < num_of_points:
@@ -421,18 +420,12 @@ class FuzzyController:
             b += results_list[i]
             i += 1
 
-
-
-        if b == 0:
-            b = sys.float_info.min
-
-
-        # return a / b
-        temp_sum = -80 * input_force_dict["left_fast"]
-        temp_sum += -40 * input_force_dict["left_slow"]
-        temp_sum += 40 * input_force_dict["right_slow"]
-        temp_sum += 80 * input_force_dict["right_fast"]
-        return temp_sum / (input_force_dict["stop"] + input_force_dict["left_fast"] + input_force_dict["left_slow"] + input_force_dict["right_slow"] + input_force_dict["right_fast"])
+        return a / b
+        # temp_sum = -80 * input_force_dict["left_fast"]
+        # temp_sum += -40 * input_force_dict["left_slow"]
+        # temp_sum += 40 * input_force_dict["right_slow"]
+        # temp_sum += 80 * input_force_dict["right_fast"]
+        # return temp_sum / (input_force_dict["stop"] + input_force_dict["left_fast"] + input_force_dict["left_slow"] + input_force_dict["right_slow"] + input_force_dict["right_fast"])
 
 
     def decide(self, world):
@@ -445,20 +438,9 @@ class FuzzyController:
         pa_dictionary = self.pa_calculator(pa)
         pv_dictionary = self.pv_calculator(pv)
         force_dictionary = self.inference_function(pa_dictionary, pv_dictionary)
-        if force_dictionary["stop"] == 0 and force_dictionary["left_fast"] == 0 and force_dictionary["left_slow"] == 0 and force_dictionary["right_fast"] == 0 and force_dictionary["right_slow"] == 0:
-            print("pa: " + str(pa_dictionary))
-            print("pv: " + str(pv_dictionary))
-            print("The pa is: " + str(pa))
-            print("The pv is: " + str(pv))
-
-
-
-
         number_of_points = 1000.    # This point must be here because of the error of python 2.7.16 interpreter in calculating floating points
-        self.integration_calculator(force_dictionary, number_of_points)
         return self.integration_calculator(force_dictionary, number_of_points)
 
-# A comment
 
 
 
