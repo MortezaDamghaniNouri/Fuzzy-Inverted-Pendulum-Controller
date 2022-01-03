@@ -293,6 +293,126 @@ class FuzzyController:
         return output_dictionary
 
 
+    # This function gets the number of needed points between -100 and 100 and returns a list of them
+    def points_generator(self, number_of_points):
+        output_list = []
+        temp = -100
+        i = 1
+        while i <= number_of_points:
+            output_list.append(temp + (200 / number_of_points))
+            temp = temp + (200 / number_of_points)
+            i += 1
+
+
+    # This function calculates the amount of input_point in stop set of force
+    def stop_func(self, input_point, stop_max):
+        if -60 <= input_point <= 60:
+            if input_point < 0:
+                main_stop_result = (input_point / 60) + 1
+            if input_point == 0:
+                main_stop_result = 1
+            if input_point > 0:
+                main_stop_result = - (input_point / 60) + 1
+
+            if main_stop_result >= stop_max:
+                return stop_max
+            else:
+                return main_stop_result
+
+        else:
+            return 0
+
+    # This function calculates the amount of input_point in left_fast set of force
+    def left_fast_func(self, input_point, left_fast_max):
+        if -100 <= input_point <= -60:
+            if input_point < -80:
+                main_stop_result = (input_point / 20) + 5
+            if input_point == -80:
+                main_stop_result = 1
+            if input_point > -80:
+                main_stop_result = - (input_point / 20) - 3
+
+            if main_stop_result >= left_fast_max:
+                return left_fast_max
+            else:
+                return main_stop_result
+
+        else:
+            return 0
+
+    # This function calculates the amount of input_point in left_slow set of force
+    def left_slow_func(self, input_point, left_slow_max):
+        if -80 <= input_point <= 0:
+            if input_point < -60:
+                main_stop_result = (input_point / 20) + 4
+            if input_point == -60:
+                main_stop_result = 1
+            if input_point > -60:
+                main_stop_result = - (input_point / 60)
+
+            if main_stop_result >= left_slow_max:
+                return left_slow_max
+            else:
+                return main_stop_result
+
+        else:
+            return 0
+
+    # This function calculates the amount of input_point in right_slow set of force
+    def right_slow_func(self, input_point, right_slow_max):
+        if 0 <= input_point <= 80:
+            if input_point < 60:
+                main_stop_result = (input_point / 60)
+            if input_point == 60:
+                main_stop_result = 1
+            if input_point > 60:
+                main_stop_result = - (input_point / 20) + 4
+
+            if main_stop_result >= right_slow_max:
+                return right_slow_max
+            else:
+                return main_stop_result
+
+        else:
+            return 0
+
+
+    # This function calculates the amount of input_point in right_fast set of force
+    def right_fast_func(self, input_point, right_fast_max):
+        if 60 <= input_point <= 100:
+            if input_point < 60:
+                main_stop_result = (input_point / 20) - 3
+            if input_point == 60:
+                main_stop_result = 1
+            if input_point > 60:
+                main_stop_result = - (input_point / 20) + 5
+
+            if main_stop_result >= right_fast_max:
+                return right_fast_max
+            else:
+                return main_stop_result
+
+        else:
+            return 0
+
+
+
+    # This function calculates the final amount of force by integration
+    def integration_calculator(self, input_force_dict):
+        points_list = self.point_generator(1000)
+        results_list = []
+        for point in points_list:
+            results_list.append(max(self.stop_func(point, input_force_dict["stop"]), self.left_fast_func(point, input_force_dict["left_fast"]), self.left_slow_func(point, input_force_dict["left_slow"]), self.right_fast_func(point, input_force_dict["right_fast"]), self.right_slow_func(point, input_force_dict["right_slow"])))
+
+
+
+
+
+
+
+
+
+
     def decide(self, world):
         new_world = self._make_input(world)
         pa = new_world["pa"]
@@ -300,6 +420,7 @@ class FuzzyController:
         pa_dictionary = self.pa_calculator(pa)
         pv_dictionary = self.pv_calculator(pv)
         force_dictionary = self.inference_function(pa_dictionary, pv_dictionary)
+        return self.integration_calculator(force_dictionary)
 
 
 
@@ -308,7 +429,3 @@ class FuzzyController:
 
 
 
-        # return 2
-       # output = self._make_output()
-       # self.system.calculate(self._make_input(world), output)
-       # return output['force']

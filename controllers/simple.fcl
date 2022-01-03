@@ -43,6 +43,8 @@ FUNCTION_BLOCK InvertedPendulum
 		TERM right_slow := (0, 0) (60, 1) (80, 0);
 		TERM right_fast := (60, 0) (80, 1) (100, 0);
 
+
+
 		ACCU : MAX;
 		METHOD : COG;
 		DEFAULT := 0;
