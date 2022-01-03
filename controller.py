@@ -2,7 +2,7 @@
 
 # python imports
 from math import degrees
-
+import sys
 # pyfuzzy imports
 from fuzzy.storage.fcl.Reader import Reader
 
@@ -34,129 +34,129 @@ class FuzzyController:
         # Calculating up_more_right value
         if 0 <= input_pa <= 60:
            if 30 > input_pa:
-               up_more_right_value = input_pa / 30
+               up_more_right_value = input_pa / 30.
            if 30 == input_pa:
-               up_more_right_value = 1
+               up_more_right_value = 1.
            if 30 < input_pa:
-                up_more_right_value = - (input_pa / 30) + 2
+                up_more_right_value = - (input_pa / 30.) + 2.
         else:
-            up_more_right_value = 0
+            up_more_right_value = 0.
         output_dictionary["up_more_right"] = up_more_right_value
 
         # Calculating up_right value
         if 30 <= input_pa <= 90:
            if 60 > input_pa:
-               up_right_value = (input_pa / 30) - 1
+               up_right_value = (input_pa / 30.) - 1.
            if 60 == input_pa:
-               up_right_value = 1
+               up_right_value = 1.
            if 60 < input_pa:
-                up_right_value = - (input_pa / 30) + 3
+                up_right_value = - (input_pa / 30.) + 3.
         else:
-            up_right_value = 0
+            up_right_value = 0.
 
         output_dictionary["up_right"] = up_right_value
 
         # Calculating up value
         if 60 <= input_pa <= 120:
            if 90 > input_pa:
-               up_value = (input_pa / 30) - 2
+               up_value = (input_pa / 30.) - 2.
            if 90 == input_pa:
-               up_value = 1
+               up_value = 1.
            if 90 < input_pa:
-                up_value = - (input_pa / 30) + 4
+                up_value = - (input_pa / 30.) + 4.
         else:
-            up_value = 0
+            up_value = 0.
 
         output_dictionary["up"] = up_value
 
         # Calculating up_left value
         if 90 <= input_pa <= 150:
            if 120 > input_pa:
-               up_left_value = (input_pa / 30) - 3
+               up_left_value = (input_pa / 30.) - 3.
            if 120 == input_pa:
-               up_left_value = 1
+               up_left_value = 1.
            if 120 < input_pa:
-                up_left_value = - (input_pa / 30) + 5
+                up_left_value = - (input_pa / 30.) + 5.
         else:
-            up_left_value = 0
+            up_left_value = 0.
 
         output_dictionary["up_left"] = up_left_value
 
         # Calculating up_more_left value
         if 120 <= input_pa <= 180:
            if 150 > input_pa:
-               up_more_left_value = (input_pa / 30) - 4
+               up_more_left_value = (input_pa / 30.) - 4.
            if 150 == input_pa:
-               up_more_left_value = 1
+               up_more_left_value = 1.
            if 150 < input_pa:
-                up_more_left_value = - (input_pa / 30) + 6
+                up_more_left_value = - (input_pa / 30.) + 6.
         else:
-            up_more_left_value = 0
+            up_more_left_value = 0.
 
         output_dictionary["up_more_left"] = up_more_left_value
 
         # Calculating down_more_left value
         if 180 <= input_pa <= 240:
            if 210 > input_pa:
-               down_more_left_value = (input_pa / 30) - 6
+               down_more_left_value = (input_pa / 30.) - 6.
            if 210 == input_pa:
-               down_more_left_value = 1
+               down_more_left_value = 1.
            if 210 < input_pa:
-                down_more_left_value = - (input_pa / 30) + 8
+                down_more_left_value = - (input_pa / 30.) + 8.
         else:
-            down_more_left_value = 0
+            down_more_left_value = 0.
 
         output_dictionary["down_more_left"] = down_more_left_value
 
         # Calculating down_left value
         if 210 <= input_pa <= 270:
            if 240 > input_pa:
-               down_left_value = (input_pa / 30) - 7
+               down_left_value = (input_pa / 30.) - 7.
            if 240 == input_pa:
-               down_left_value = 1
+               down_left_value = 1.
            if 240 < input_pa:
-                down_left_value = - (input_pa / 30) + 9
+                down_left_value = - (input_pa / 30.) + 9.
         else:
-            down_left_value = 0
+            down_left_value = 0.
 
         output_dictionary["down_left"] = down_left_value
 
         # Calculating down value
         if 240 <= input_pa <= 300:
            if 270 > input_pa:
-               down_value = (input_pa / 30) - 8
+               down_value = (input_pa / 30.) - 8.
            if 270 == input_pa:
-               down_value = 1
+               down_value = 1.
            if 270 < input_pa:
-                down_value = - (input_pa / 30) + 10
+                down_value = - (input_pa / 30.) + 10.
         else:
-            down_value = 0
+            down_value = 0.
 
         output_dictionary["down"] = down_value
 
         # Calculating down_right value
         if 270 <= input_pa <= 330:
            if 300 > input_pa:
-               down_right_value = (input_pa / 30) - 9
+               down_right_value = (input_pa / 30.) - 9.
            if 300 == input_pa:
-               down_right_value = 1
+               down_right_value = 1.
            if 300 < input_pa:
-                down_right_value = - (input_pa / 30) + 11
+                down_right_value = - (input_pa / 30.) + 11.
         else:
-            down_right_value = 0
+            down_right_value = 0.
 
         output_dictionary["down_right"] = down_right_value
 
         # Calculating down_more_right value
         if 300 <= input_pa <= 360:
            if 330 > input_pa:
-               down_more_right_value = (input_pa / 30) - 10
+               down_more_right_value = (input_pa / 30.) - 10.
            if 330 == input_pa:
-               down_more_right_value = 1
+               down_more_right_value = 1.
            if 330 < input_pa:
-                down_more_right_value = - (input_pa / 30) + 12
+                down_more_right_value = - (input_pa / 30.) + 12.
         else:
-            down_more_right_value = 0
+            down_more_right_value = 0.
 
         output_dictionary["down_more_right"] = down_more_right_value
 
@@ -166,35 +166,36 @@ class FuzzyController:
     # This function receives the amount of pv as input an returns a dictionary of pv amounts in different sets
     def pv_calculator(self, input_pv):
         output_dictionary = {}
+
         # Calculating cw_fast
         if -200 <= input_pv <= -100:
-            cw_fast_value = (- 0.01 * input_pv) - 1
+            cw_fast_value = (- 0.01 * input_pv) - 1.
         else:
-            cw_fast_value = 0
+            cw_fast_value = 0.
         output_dictionary["cw_fast"] = cw_fast_value
 
         # Calculating cw_slow
         if -200 <= input_pv <= 0:
             if input_pv < -100:
-                cw_slow_value = (0.01 * input_pv) + 2
+                cw_slow_value = (0.01 * input_pv) + 2.
             if input_pv == -100:
-                cw_slow_value = 1
+                cw_slow_value = 1.
             if -100 < input_pv:
                 cw_slow_value = - 0.01 * input_pv
         else:
-            cw_slow_value = 0
+            cw_slow_value = 0.
         output_dictionary["cw_slow"] = cw_slow_value
 
         # Calculating stop
         if -100 <= input_pv <= 100:
             if input_pv < 0:
-                stop_value = (0.01 * input_pv) + 1
+                stop_value = (0.01 * input_pv) + 1.
             if input_pv == 0:
-                stop_value = 1
+                stop_value = 1.
             if 0 < input_pv:
-                stop_value = (- 0.01 * input_pv) + 1
+                stop_value = (- 0.01 * input_pv) + 1.
         else:
-            stop_value = 0
+            stop_value = 0.
         output_dictionary["stop"] = stop_value
 
         # Calculating ccw_slow
@@ -202,19 +203,23 @@ class FuzzyController:
             if input_pv < 100:
                 ccw_slow_value = (0.01 * input_pv)
             if input_pv == 100:
-                ccw_slow_value = 1
+                ccw_slow_value = 1.
             if 100 < input_pv:
-                ccw_slow_value = (- 0.01 * input_pv) + 2
+                ccw_slow_value = (- 0.01 * input_pv) + 2.
         else:
-            ccw_slow_value = 0
+            ccw_slow_value = 0.
         output_dictionary["ccw_slow"] = ccw_slow_value
 
         # Calculating ccw_fast
         if 100 <= input_pv <= 200:
-            ccw_fast_value = (0.01 * input_pv) - 1
+            ccw_fast_value = (0.01 * input_pv) - 1.
         else:
-            ccw_fast_value = 0
+            ccw_fast_value = 0.
         output_dictionary["ccw_fast"] = ccw_fast_value
+        if input_pv < -200:
+           output_dictionary["cw_fast"] = 1
+        if input_pv > 200:
+            output_dictionary["ccw_fast"] = 1
 
         return output_dictionary
 
@@ -290,6 +295,7 @@ class FuzzyController:
         output_dictionary["left_slow"] = self.max_finder(left_slow_list)
         output_dictionary["right_fast"] = self.max_finder(right_fast_list)
         output_dictionary["right_slow"] = self.max_finder(right_slow_list)
+
         return output_dictionary
 
 
@@ -309,11 +315,11 @@ class FuzzyController:
     def stop_func(self, input_point, stop_max):
         if -60 <= input_point <= 60:
             if input_point < 0:
-                main_stop_result = (input_point / 60) + 1
+                main_stop_result = (input_point / 60.) + 1.
             if input_point == 0:
-                main_stop_result = 1
+                main_stop_result = 1.
             if input_point > 0:
-                main_stop_result = - (input_point / 60) + 1
+                main_stop_result = - (input_point / 60.) + 1.
 
             if main_stop_result >= stop_max:
                 return stop_max
@@ -321,17 +327,17 @@ class FuzzyController:
                 return main_stop_result
 
         else:
-            return 0
+            return 0.
 
     # This function calculates the amount of input_point in left_fast set of force
     def left_fast_func(self, input_point, left_fast_max):
         if -100 <= input_point <= -60:
             if input_point < -80:
-                main_stop_result = (input_point / 20) + 5
+                main_stop_result = (input_point / 20.) + 5.
             if input_point == -80:
-                main_stop_result = 1
+                main_stop_result = 1.
             if input_point > -80:
-                main_stop_result = - (input_point / 20) - 3
+                main_stop_result = - (input_point / 20.) - 3.
 
             if main_stop_result >= left_fast_max:
                 return left_fast_max
@@ -339,17 +345,17 @@ class FuzzyController:
                 return main_stop_result
 
         else:
-            return 0
+            return 0.
 
     # This function calculates the amount of input_point in left_slow set of force
     def left_slow_func(self, input_point, left_slow_max):
         if -80 <= input_point <= 0:
             if input_point < -60:
-                main_stop_result = (input_point / 20) + 4
+                main_stop_result = (input_point / 20.) + 4.
             if input_point == -60:
-                main_stop_result = 1
+                main_stop_result = 1.
             if input_point > -60:
-                main_stop_result = - (input_point / 60)
+                main_stop_result = - (input_point / 60.)
 
             if main_stop_result >= left_slow_max:
                 return left_slow_max
@@ -357,17 +363,17 @@ class FuzzyController:
                 return main_stop_result
 
         else:
-            return 0
+            return 0.
 
     # This function calculates the amount of input_point in right_slow set of force
     def right_slow_func(self, input_point, right_slow_max):
         if 0 <= input_point <= 80:
             if input_point < 60:
-                main_stop_result = (input_point / 60)
+                main_stop_result = (input_point / 60.)
             if input_point == 60:
-                main_stop_result = 1
+                main_stop_result = 1.
             if input_point > 60:
-                main_stop_result = - (input_point / 20) + 4
+                main_stop_result = - (input_point / 20.) + 4.
 
             if main_stop_result >= right_slow_max:
                 return right_slow_max
@@ -375,18 +381,18 @@ class FuzzyController:
                 return main_stop_result
 
         else:
-            return 0
+            return 0.
 
 
     # This function calculates the amount of input_point in right_fast set of force
     def right_fast_func(self, input_point, right_fast_max):
         if 60 <= input_point <= 100:
             if input_point < 60:
-                main_stop_result = (input_point / 20) - 3
+                main_stop_result = (input_point / 20.) - 3.
             if input_point == 60:
-                main_stop_result = 1
+                main_stop_result = 1.
             if input_point > 60:
-                main_stop_result = - (input_point / 20) + 5
+                main_stop_result = - (input_point / 20.) + 5.
 
             if main_stop_result >= right_fast_max:
                 return right_fast_max
@@ -394,16 +400,19 @@ class FuzzyController:
                 return main_stop_result
 
         else:
-            return 0
+            return 0.
 
 
     # This function calculates the final amount of force by integration
     def integration_calculator(self, input_force_dict, num_of_points):
         points_list = self.points_generator(num_of_points)
-        print(points_list)
+        # print(points_list)
         results_list = []
-        for point in points_list:
-            results_list.append(max(self.stop_func(point, input_force_dict["stop"]), self.left_fast_func(point, input_force_dict["left_fast"]), self.left_slow_func(point, input_force_dict["left_slow"]), self.right_fast_func(point, input_force_dict["right_fast"]), self.right_slow_func(point, input_force_dict["right_slow"])))
+        i = 0
+        while i < num_of_points:
+            results_list.append(max(self.stop_func(points_list[i], input_force_dict["stop"]), self.left_fast_func(points_list[i], input_force_dict["left_fast"]), self.left_slow_func(points_list[i], input_force_dict["left_slow"]), self.right_fast_func(points_list[i], input_force_dict["right_fast"]), self.right_slow_func(points_list[i], input_force_dict["right_slow"])))
+            i += 1
+
         i = 0
         a = 0
         b = 0
@@ -411,19 +420,43 @@ class FuzzyController:
             a += points_list[i] * results_list[i]
             b += results_list[i]
             i += 1
-        return a / b
+
+
+
+        if b == 0:
+            b = sys.float_info.min
+
+
+        # return a / b
+        temp_sum = -80 * input_force_dict["left_fast"]
+        temp_sum += -40 * input_force_dict["left_slow"]
+        temp_sum += 40 * input_force_dict["right_slow"]
+        temp_sum += 80 * input_force_dict["right_fast"]
+        return temp_sum / (input_force_dict["stop"] + input_force_dict["left_fast"] + input_force_dict["left_slow"] + input_force_dict["right_slow"] + input_force_dict["right_fast"])
 
 
     def decide(self, world):
+
         new_world = self._make_input(world)
         pa = new_world["pa"]
         pv = new_world["pv"]
+        if pa == -90:   # This is for handling the first pa which is -90 because the pendulum is down
+            pa = 270
         pa_dictionary = self.pa_calculator(pa)
         pv_dictionary = self.pv_calculator(pv)
         force_dictionary = self.inference_function(pa_dictionary, pv_dictionary)
+        if force_dictionary["stop"] == 0 and force_dictionary["left_fast"] == 0 and force_dictionary["left_slow"] == 0 and force_dictionary["right_fast"] == 0 and force_dictionary["right_slow"] == 0:
+            print("pa: " + str(pa_dictionary))
+            print("pv: " + str(pv_dictionary))
+            print("The pa is: " + str(pa))
+            print("The pv is: " + str(pv))
+
+
+
+
         number_of_points = 1000.    # This point must be here because of the error of python 2.7.16 interpreter in calculating floating points
-        my_result = self.integration_calculator(force_dictionary, number_of_points)
-        return max(force_dictionary["stop"], force_dictionary["left_fast"], force_dictionary["right_fast"], force_dictionary["left_slow"], force_dictionary["right_slow"])
+        self.integration_calculator(force_dictionary, number_of_points)
+        return self.integration_calculator(force_dictionary, number_of_points)
 
 
 
