@@ -219,13 +219,71 @@ class FuzzyController:
         return output_dictionary
 
 
+    # This function infers according to the amounts of pa and pv
+    def inference_function(self, input_pa_dict, input_pv_dict):
+        stop_list = []
+        left_fast_list = []
+        left_slow_list = []
+        right_fast_list = []
+        right_slow_list = []
+        stop_list.append(max(min(input_pa_dict["up"], input_pv_dict["stop"]), min(input_pa_dict["up_right"], input_pv_dict["ccw_slow"]), min(input_pa_dict["up_left"], input_pv_dict["cw_slow"])))
+        right_fast_list.append(min(input_pa_dict["up_more_right"], input_pv_dict["ccw_slow"]))
+        right_fast_list.append(min(input_pa_dict["up_more_right"], input_pv_dict["cw_slow"]))
+        left_fast_list.append(min(input_pa_dict["up_more_left"], input_pv_dict["cw_slow"]))
+        left_fast_list.append(min(input_pa_dict["up_more_left"], input_pv_dict["ccw_slow"]))
+        left_slow_list.append(min(input_pa_dict["up_more_right"], input_pv_dict["ccw_fast"]))
+        right_fast_list.append(min(input_pa_dict["up_more_right"], input_pv_dict["cw_fast"]))
+        right_slow_list.append(min(input_pa_dict["up_more_left"], input_pv_dict["cw_fast"]))
+        left_fast_list.append(min(input_pa_dict["up_more_left"], input_pv_dict["ccw_fast"]))
+        right_fast_list.append(min(input_pa_dict["down_more_right"], input_pv_dict["ccw_slow"]))
+        stop_list.append(min(input_pa_dict["down_more_right"], input_pv_dict["cw_slow"]))
+        left_fast_list.append(min(input_pa_dict["down_more_left"], input_pv_dict["cw_slow"]))
+        stop_list.append(min(input_pa_dict["down_more_left"], input_pv_dict["ccw_slow"]))
+        stop_list.append(min(input_pa_dict["down_more_right"], input_pv_dict["ccw_fast"]))
+        stop_list.append(min(input_pa_dict["down_more_right"], input_pv_dict["cw_fast"]))
+        stop_list.append(min(input_pa_dict["down_more_left"], input_pv_dict["cw_fast"]))
+        stop_list.append(min(input_pa_dict["down_more_left"], input_pv_dict["ccw_fast"]))
+        right_fast_list.append(min(input_pa_dict["down_right"], input_pv_dict["ccw_slow"]))
+        right_fast_list.append(min(input_pa_dict["down_right"], input_pv_dict["cw_slow"]))
+        left_fast_list.append(min(input_pa_dict["down_left"], input_pv_dict["cw_slow"]))
+        left_fast_list.append(min(input_pa_dict["down_left"], input_pv_dict["ccw_slow"]))
+        stop_list.append(min(input_pa_dict["down_right"], input_pv_dict["ccw_fast"]))
+        right_slow_list.append(min(input_pa_dict["down_right"], input_pv_dict["cw_fast"]))
+        stop_list.append(min(input_pa_dict["down_left"], input_pv_dict["cw_fast"]))
+        left_slow_list.append(min(input_pa_dict["down_left"], input_pv_dict["ccw_fast"]))
+        right_slow_list.append(min(input_pa_dict["up_right"], input_pv_dict["ccw_slow"]))
+        right_fast_list.append(min(input_pa_dict["up_right"], input_pv_dict["cw_slow"]))
+        right_fast_list.append(min(input_pa_dict["up_right"], input_pv_dict["stop"]))
+        left_slow_list.append(min(input_pa_dict["up_left"], input_pv_dict["cw_slow"]))
+        left_fast_list.append(min(input_pa_dict["up_left"], input_pv_dict["ccw_slow"]))
+        left_fast_list.append(min(input_pa_dict["up_left"], input_pv_dict["stop"]))
+        left_fast_list.append(min(input_pa_dict["up_right"], input_pv_dict["ccw_fast"]))
+        right_fast_list.append(min(input_pa_dict["up_right"], input_pv_dict["cw_fast"]))
+        right_fast_list.append(min(input_pa_dict["up_left"], input_pv_dict["cw_fast"]))
+        left_fast_list.append(min(input_pa_dict["up_left"], input_pv_dict["ccw_fast"]))
+        right_fast_list.append(min(input_pa_dict["down"], input_pv_dict["stop"]))
+        stop_list.append(min(input_pa_dict["down"], input_pv_dict["cw_fast"]))
+        stop_list.append(min(input_pa_dict["down"], input_pv_dict["ccw_fast"]))
+        left_slow_list.append(min(input_pa_dict["up"], input_pv_dict["ccw_slow"]))
+        left_fast_list.append(min(input_pa_dict["up"], input_pv_dict["ccw_fast"]))
+        right_slow_list.append(min(input_pa_dict["up"], input_pv_dict["cw_slow"]))
+        right_fast_list.append(min(input_pa_dict["up"], input_pv_dict["cw_fast"]))
+        stop_list.append(min(input_pa_dict["up"], input_pv_dict["stop"]))
+
+
+
+
+
+
+
+
     def decide(self, world):
         new_world = self._make_input(world)
         pa = new_world["pa"]
         pv = new_world["pv"]
         pa_dictionary = self.pa_calculator(pa)
         pv_dictionary = self.pv_calculator(pv)
-
+        force_dictionary = self.inference_function(pa_dictionary, pv_dictionary)
 
 
 
