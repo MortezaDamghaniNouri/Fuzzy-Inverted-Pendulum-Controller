@@ -17,7 +17,6 @@ FUNCTION_BLOCK InvertedPendulum
 		TERM up_left := (90, 0) (120, 1) (150, 0);
 		TERM up_more_left := (120, 0) (150, 1) (180, 0);
 		TERM down_more_left := (180, 0) (210, 1) (240, 0);
-
 		TERM down_left := (210, 0) (240, 1) (270, 0);
 		TERM down := (240, 0) (270, 1) (300, 0);
 		TERM down_right := (270, 0) (300, 1) (330, 0);

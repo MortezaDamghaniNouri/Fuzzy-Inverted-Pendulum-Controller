@@ -2,7 +2,6 @@
 
 # python imports
 from math import degrees
-import sys
 # pyfuzzy imports
 from fuzzy.storage.fcl.Reader import Reader
 
