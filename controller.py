@@ -296,12 +296,13 @@ class FuzzyController:
     # This function gets the number of needed points between -100 and 100 and returns a list of them
     def points_generator(self, number_of_points):
         output_list = []
-        temp = -100
+        temp = -100.
         i = 1
         while i <= number_of_points:
-            output_list.append(temp + (200 / number_of_points))
-            temp = temp + (200 / number_of_points)
+            output_list.append(temp + (200. / number_of_points))
+            temp = temp + (200. / number_of_points)
             i += 1
+        return output_list
 
 
     # This function calculates the amount of input_point in stop set of force
@@ -396,21 +397,21 @@ class FuzzyController:
             return 0
 
 
-
     # This function calculates the final amount of force by integration
-    def integration_calculator(self, input_force_dict):
-        points_list = self.point_generator(1000)
+    def integration_calculator(self, input_force_dict, num_of_points):
+        points_list = self.points_generator(num_of_points)
+        print(points_list)
         results_list = []
         for point in points_list:
             results_list.append(max(self.stop_func(point, input_force_dict["stop"]), self.left_fast_func(point, input_force_dict["left_fast"]), self.left_slow_func(point, input_force_dict["left_slow"]), self.right_fast_func(point, input_force_dict["right_fast"]), self.right_slow_func(point, input_force_dict["right_slow"])))
-
-
-
-
-
-
-
-
+        i = 0
+        a = 0
+        b = 0
+        while i < num_of_points:
+            a += points_list[i] * results_list[i]
+            b += results_list[i]
+            i += 1
+        return a / b
 
 
     def decide(self, world):
@@ -420,7 +421,9 @@ class FuzzyController:
         pa_dictionary = self.pa_calculator(pa)
         pv_dictionary = self.pv_calculator(pv)
         force_dictionary = self.inference_function(pa_dictionary, pv_dictionary)
-        return self.integration_calculator(force_dictionary)
+        number_of_points = 1000.    # This point must be here because of the error of python 2.7.16 interpreter in calculating floating points
+        my_result = self.integration_calculator(force_dictionary, number_of_points)
+        return max(force_dictionary["stop"], force_dictionary["left_fast"], force_dictionary["right_fast"], force_dictionary["left_slow"], force_dictionary["right_slow"])
 
 
 
