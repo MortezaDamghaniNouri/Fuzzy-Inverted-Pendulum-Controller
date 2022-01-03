@@ -95,6 +95,72 @@ class FuzzyController:
 
         output_dictionary["up_more_left"] = up_more_left_value
 
+        # Calculating down_more_left value
+        if 180 <= input_pa <= 240:
+           if 210 > input_pa:
+               down_more_left_value = (input_pa / 30) - 6
+           if 210 == input_pa:
+               down_more_left_value = 1
+           if 210 < input_pa:
+                down_more_left_value = - (input_pa / 30) + 8
+        else:
+            down_more_left_value = 0
+
+        output_dictionary["down_more_left"] = down_more_left_value
+
+        # Calculating down_left value
+        if 210 <= input_pa <= 270:
+           if 240 > input_pa:
+               down_left_value = (input_pa / 30) - 7
+           if 240 == input_pa:
+               down_left_value = 1
+           if 240 < input_pa:
+                down_left_value = - (input_pa / 30) + 9
+        else:
+            down_left_value = 0
+
+        output_dictionary["down_left"] = down_left_value
+
+        # Calculating down value
+        if 240 <= input_pa <= 300:
+           if 270 > input_pa:
+               down_value = (input_pa / 30) - 8
+           if 270 == input_pa:
+               down_value = 1
+           if 270 < input_pa:
+                down_value = - (input_pa / 30) + 10
+        else:
+            down_value = 0
+
+        output_dictionary["down"] = down_value
+
+        # Calculating down_right value
+        if 270 <= input_pa <= 330:
+           if 300 > input_pa:
+               down_right_value = (input_pa / 30) - 9
+           if 300 == input_pa:
+               down_right_value = 1
+           if 300 < input_pa:
+                down_right_value = - (input_pa / 30) + 11
+        else:
+            down_right_value = 0
+
+        output_dictionary["down_right"] = down_right_value
+
+        # Calculating down_more_right value
+        if 300 <= input_pa <= 360:
+           if 330 > input_pa:
+               down_more_right_value = (input_pa / 30) - 10
+           if 330 == input_pa:
+               down_more_right_value = 1
+           if 330 < input_pa:
+                down_more_right_value = - (input_pa / 30) + 12
+        else:
+            down_more_right_value = 0
+
+        output_dictionary["down_more_right"] = down_more_right_value
+
+        return output_dictionary
 
 
 
