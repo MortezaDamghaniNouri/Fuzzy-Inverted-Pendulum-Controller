@@ -458,6 +458,7 @@ class FuzzyController:
         self.integration_calculator(force_dictionary, number_of_points)
         return self.integration_calculator(force_dictionary, number_of_points)
 
+# A comment
 
 
 
