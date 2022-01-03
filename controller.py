@@ -163,14 +163,68 @@ class FuzzyController:
         return output_dictionary
 
 
+    # This function receives the amount of pv as input an returns a dictionary of pv amounts in different sets
+    def pv_calculator(self, input_pv):
+        output_dictionary = {}
+        # Calculating cw_fast
+        if -200 <= input_pv <= -100:
+            cw_fast_value = (- 0.01 * input_pv) - 1
+        else:
+            cw_fast_value = 0
+        output_dictionary["cw_fast"] = cw_fast_value
+
+        # Calculating cw_slow
+        if -200 <= input_pv <= 0:
+            if input_pv < -100:
+                cw_slow_value = (0.01 * input_pv) + 2
+            if input_pv == -100:
+                cw_slow_value = 1
+            if -100 < input_pv:
+                cw_slow_value = - 0.01 * input_pv
+        else:
+            cw_slow_value = 0
+        output_dictionary["cw_slow"] = cw_slow_value
+
+        # Calculating stop
+        if -100 <= input_pv <= 100:
+            if input_pv < 0:
+                stop_value = (0.01 * input_pv) + 1
+            if input_pv == 0:
+                stop_value = 1
+            if 0 < input_pv:
+                stop_value = (- 0.01 * input_pv) + 1
+        else:
+            stop_value = 0
+        output_dictionary["stop"] = stop_value
+
+        # Calculating ccw_slow
+        if 0 <= input_pv <= 200:
+            if input_pv < 100:
+                ccw_slow_value = (0.01 * input_pv)
+            if input_pv == 100:
+                ccw_slow_value = 1
+            if 100 < input_pv:
+                ccw_slow_value = (- 0.01 * input_pv) + 2
+        else:
+            ccw_slow_value = 0
+        output_dictionary["ccw_slow"] = ccw_slow_value
+
+        # Calculating ccw_fast
+        if 100 <= input_pv <= 200:
+            ccw_fast_value = (0.01 * input_pv) - 1
+        else:
+            ccw_fast_value = 0
+        output_dictionary["ccw_fast"] = ccw_fast_value
+
+        return output_dictionary
 
 
     def decide(self, world):
         new_world = self._make_input(world)
         pa = new_world["pa"]
         pv = new_world["pv"]
-        pa_dictionary = pa_calculator(pa)
-        pv_dictionary = pv_calculator(pv)
+        pa_dictionary = self.pa_calculator(pa)
+        pv_dictionary = self.pv_calculator(pv)
 
 
 
